@@ -1,11 +1,13 @@
 package com.example.webviewapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,16 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
     private WebView myWebView;
 
-
     public void showExternalWebPage(){
-        // TODO: Add your code for showing external web page here
-
+        myWebView.loadUrl("https://student.his.se/");
     }
 
     public void showInternalWebPage(){
-        // TODO: Add your code for showing internal web page here
+
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +36,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        myWebView = (WebView) findViewById(R.id.my_webview);
+        myWebView.getSettings().setJavaScriptEnabled(true);
 
-        WebView myWebView = new WebView(this);
-        setContentView(myWebView);
-        myWebView.loadUrl("https://his.se");
     }
 
 
@@ -60,11 +60,13 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_external_web) {
             Log.d("==>","Will display external web page");
+            myWebView.loadUrl("https://student.his.se/");
             return true;
         }
 
         if (id == R.id.action_internal_web) {
             Log.d("==>","Will display internal web page");
+            myWebView.loadUrl("file:///android_asset/about.html");
             return true;
         }
 
