@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
         myWebView.loadUrl("https://student.his.se/");
     }
 
-    public void showInternalWebPage(){
-
-    }
+    public void showInternalWebPage(){ myWebView.loadUrl("file:///android_asset/about.html"); }
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
