@@ -43,4 +43,7 @@ med loadUr. Sedan kallades de längst ner i java-koden i action_external och act
 
 ```
 
-Screenshots till de olika vyerna ligger som bilder bifogade i Rapportmallen.
+Screenshots till de olika vyerna ligger som 
+![](externalWebD2.png)
+
+!
