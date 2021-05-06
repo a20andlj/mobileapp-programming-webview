@@ -16,9 +16,26 @@ import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Scanner;
+
 public class MainActivity extends AppCompatActivity {
 
+
+    private String TAG = "mountains.json";
     private WebView myWebView;
+
+    @SuppressWarnings("SameParameterValue")
+    private String readFile(String fileName) {
+        try {
+            //noinspection CharsetObjectCanBeUsed
+            return new Scanner(getApplicationContext().getAssets().open("mountains.json"), Charset.forName("UTF-8").name()).useDelimiter("\\A").next();
+        } catch (IOException e) {
+            Log.e("MainActivity ==>", "Could not read file: " + "mountains.json");
+            return null;
+        }
+    }
 
     public void showExternalWebPage(){
         myWebView.loadUrl("https://student.his.se/");
@@ -36,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         myWebView = (WebView) findViewById(R.id.my_webview);
         myWebView.getSettings().setJavaScriptEnabled(true);
+
+        String s = readFile("mountains.json");
+        Log.d("MainActivity ==>","The following text was found in textfile:\n\n"+s);
 
         showInternalWebPage();
 
